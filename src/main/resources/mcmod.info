@@ -1,0 +1,16 @@
+[
+{
+  "modid": "hidearmor",
+  "name": "Hide Armor",
+  "description": "Adds an item to hide a players armor",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["linuxdemon"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
