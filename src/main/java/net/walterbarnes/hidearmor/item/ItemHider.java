@@ -3,9 +3,11 @@ package net.walterbarnes.hidearmor.item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.walterbarnes.hidearmor.HideArmor;
@@ -45,12 +47,26 @@ public class ItemHider extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (player.isPotionActive(HideArmor.potionName.id)) {
-            player.removePotionEffect(HideArmor.potionName.id);
-        } else {
-            player.addPotionEffect(new HideArmorEffect(HideArmor.potionName.id, 1000, 0, false));
+        if (itemStack.getItemDamage() > 0)
+        {
+            itemStack.setItemDamage(0);
+        }
+        else
+        {
+            itemStack.setItemDamage(1);
         }
         return itemStack;
+    }
+
+    @Override
+    public void onUpdate(ItemStack itemStack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
+        if (itemStack.getItemDamage() > 0)
+        {
+            if (entity instanceof EntityPlayer)
+            {
+                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(HideArmor.potionName.id, 2, 0));
+            }
+        }
     }
 
     @Override
@@ -59,17 +75,6 @@ public class ItemHider extends Item {
         if (meta > 0) {
             return showIcon;
         }
-        return hideIcon;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) {
-        if (player.isPotionActive(HideArmor.potionName.id)) {
-            stack.setItemDamage(1);
-            return showIcon;
-        }
-        stack.setItemDamage(0);
         return hideIcon;
     }
 }

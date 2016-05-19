@@ -20,7 +20,7 @@ import java.lang.reflect.Modifier;
 public class HideArmor {
     public static final String MODID = "hidearmor";
     public static final String MODNAME = "Hidden Armor";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "@VERSION@";
     public static final String CLIENT_PROXY_CLASS = "net.walterbarnes.hidearmor.proxy.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "net.walterbarnes.hidearmor.proxy.ServerProxy";
     @SidedProxy(clientSide = HideArmor.CLIENT_PROXY_CLASS, serverSide = HideArmor.SERVER_PROXY_CLASS)
