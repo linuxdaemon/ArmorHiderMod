@@ -11,7 +11,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.walterbarnes.hidearmor.HideArmor;
-import net.walterbarnes.hidearmor.potion.HideArmorEffect;
 
 public class ItemHider extends Item {
     private IIcon showIcon;
@@ -47,12 +46,9 @@ public class ItemHider extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (itemStack.getItemDamage() > 0)
-        {
+        if (itemStack.getItemDamage() > 0) {
             itemStack.setItemDamage(0);
-        }
-        else
-        {
+        } else {
             itemStack.setItemDamage(1);
         }
         return itemStack;
@@ -60,11 +56,9 @@ public class ItemHider extends Item {
 
     @Override
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
-        if (itemStack.getItemDamage() > 0)
-        {
-            if (entity instanceof EntityPlayer)
-            {
-                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(HideArmor.potionName.id, 2, 0));
+        if (itemStack.getItemDamage() > 0) {
+            if (entity instanceof EntityPlayer) {
+                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(HideArmor.armorPotion.id, 2, 0));
             }
         }
     }

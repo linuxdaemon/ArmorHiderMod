@@ -25,7 +25,7 @@ public class HideArmor {
     public static final String SERVER_PROXY_CLASS = "net.walterbarnes.hidearmor.proxy.ServerProxy";
     @SidedProxy(clientSide = HideArmor.CLIENT_PROXY_CLASS, serverSide = HideArmor.SERVER_PROXY_CLASS)
     public static IProxy proxy;
-    public static Potion potionName;
+    public static Potion armorPotion;
     @Mod.Instance(HideArmor.MODID)
     public HideArmor instance;
 
@@ -51,13 +51,13 @@ public class HideArmor {
                 System.err.println(e);
             }
         }
-        potionName = new PotionHideArmor(75, false, 0).setIconIndex(0, 0).setPotionName("Hide Armor");
         ModItems.init();
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.armorHider), Items.leather_chestplate, Blocks.glass);
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+        armorPotion = (new PotionHideArmor(120, false, 0)).setIconIndex(0, 0).setPotionName("Hide Armor");
         proxy.initRenderHandlers();
     }
 }
